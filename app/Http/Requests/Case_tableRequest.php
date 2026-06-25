@@ -11,7 +11,7 @@ class Case_tableRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class Case_tableRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title_case'=>'string|required|min:10|max:150|unique:case_tables,title_case' . $this->route("Case_table"),
+            'file_number'=>'string|required|min:10|max:150',
+            'apeture_case'=>'string|required|min:10|max:150',
+            'state_case'=>'string|required|min:10|max:150',
+            'date_cierre' => 'required|date|after_or_equal:today',
+            'priority' => 'required|in:si,no',
+
+
         ];
     }
 }

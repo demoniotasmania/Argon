@@ -11,7 +11,7 @@ class EvidenciaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class EvidenciaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'string|required|min:10|max:150|unique:evidencias,name' . $this->route("evidencia"),
+            'type_evidence'=>'required|in:mas,menos',
+            'description'=>'string|required|min:10|max:150',
+            'obseravtion'=>'string|required|min:10|max:150',
+            'presentation_date' => 'required|date|after_or_equal:today',
+            'state' => 'string|required|min:10|max:150'
         ];
     }
 }
+

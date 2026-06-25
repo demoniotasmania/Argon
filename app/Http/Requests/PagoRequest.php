@@ -11,7 +11,7 @@ class PagoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class PagoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'Description'=>'string|required|min:10|max:150' ,
+            'Status'=>'string|required|min:10|max:150',
+            'reference'=>'string|required|min:10|max:150',
+            'amount'=>'string|required|min:10|max:150',
+            'payment_date' => 'required|date|after_or_equal:today',
+            'payment_method' => 'required|date|after_or_equal:today',
         ];
     }
 }

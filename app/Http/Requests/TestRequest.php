@@ -11,7 +11,7 @@ class TestRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class TestRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'string|required|min:10|max:150|unique:tests,name' . $this->route("Test"),
+            'Description'=>'string|required|min:10|max:150',
+            'status'=>'string|required|min:10|max:150',
+            'comments'=>'string|required|min:10|max:150',
+            'submission_date' => 'required|date|after_or_equal:today',
+            'test_type' => 'required|in:si,no',
         ];
     }
 }
+

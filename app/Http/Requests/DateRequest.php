@@ -11,7 +11,7 @@ class DateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class DateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'Description'=>'string|required|min:10|max:150' ,
+            'Status'=>'string|required|min:10|max:150',
+            'Observations'=>'string|required|min:10|max:150',
+            'Location'=>'string|required|min:10|max:150',
+            'Appointment time' => 'required|date|after_or_equal:today',
+            'Appointment date' => 'required|date|after_or_equal:today',
         ];
     }
 }
+

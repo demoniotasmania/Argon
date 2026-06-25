@@ -11,7 +11,7 @@ class State_caseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class State_caseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'string|required|min:10|max:150|unique:state_cases,name' . $this->route("state_cases"),
+            'state'=>'string|required|min:10|max:150',
+            'description'=>'string|required|min:10|max:150',
+            'creation_date' => 'required|date|after_or_equal:today'
+
         ];
     }
 }

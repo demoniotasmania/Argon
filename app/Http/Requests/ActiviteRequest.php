@@ -11,7 +11,7 @@ class ActiviteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class ActiviteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name_activite'=>'string|required|min:10|max:150' ,
+            'description'=>'string|required|min:10|max:2000',
+            'date_activity' => 'required|date|after_or_equal:today',
+            'start_time'=>'required|date|after_or_equal:today',
+            'state' => 'string|required|min:10|max:1000',
+            'final_time' => 'required|date|after_or_equal:today',
+            'observation' => 'string|required|min:10|max:1000',
+            'type_facture' => 'required|date|after_or_equal:today',
         ];
     }
 }

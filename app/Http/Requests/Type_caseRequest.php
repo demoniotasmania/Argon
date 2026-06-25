@@ -11,7 +11,7 @@ class type_case extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class type_case extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'string|required|min:10|max:150|unique:type_cases,name' . $this->route("Type_case"),
+            'descripicion'=>'string|required|min:10|max:150',
+            'code'=>'string|required|min:10|max:150',
+            'state'=>'string|required|min:10|max:150'
+
         ];
     }
 }
